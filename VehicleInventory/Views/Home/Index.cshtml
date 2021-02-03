@@ -1,0 +1,75 @@
+﻿@model IEnumerable<VehicleInventory.Models.Vehicle>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html>
+<head>
+
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    @{
+        ViewData["Title"] = "Vehicle Inventory";
+    }
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align:center">Vehicle Inventory</h1>
+        <p>
+            <a asp-action="Create">Add Vehicle</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VINNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Make)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Year)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Created)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Modified)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VINNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Make)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Modified)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.VINNumber }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.VINNumber })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using VehicleInventory.Repository;
 
 namespace VehicleInventory
 {
@@ -6,7 +9,22 @@ namespace VehicleInventory
     {
         public static void Main(string[] args)
         {
-           //TODO: Read Instruction.txt file associate before you start.
+            var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<InventoryDBContext>();
+                DataGenerator.Initialize(services);
+            }
+            host.Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
     }
 }

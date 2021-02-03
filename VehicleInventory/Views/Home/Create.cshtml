@@ -1,0 +1,55 @@
+﻿@model VehicleInventory.Models.Vehicle
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<html>
+
+<head>
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    @{
+        ViewData["Title"] = "Create Vehicle";
+    }
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="col-md-4">
+            <h1>Create Vehicle</h1>
+            <hr />
+            <form asp-action="Create" asp-method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="VINNumber" class="control-label"></label>
+                    <input asp-for="VINNumber" class="form-control" />
+                    <span asp-validation-for="VINNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Make" class="control-label"></label>
+                    <input asp-for="Make" class="form-control" />
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Model" class="control-label"></label>
+                    <input asp-for="Model" class="form-control" />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Year" class="control-label"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

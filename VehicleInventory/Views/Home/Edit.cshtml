@@ -1,0 +1,55 @@
+﻿@model VehicleInventory.Models.Vehicle
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html>
+<head>
+
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    @{
+        ViewData["Title"] = "Update Vehicle";
+    }
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="col-md-4">
+            <h1>Update Vehicle</h1>
+            <hr />
+            <form asp-action="Edit" method="post" asp-controller="Home">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="VINNumber" class="control-label">VIN Number</label>
+                    <input asp-for="VINNumber" class="form-control" value=@Model.VINNumber />
+                    <span asp-validation-for="VINNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Make" class="control-label">Make</label>
+                    <input asp-for="Make" class="form-control" value=@Model.Make />
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Model" class="control-label">Model</label>
+                    <input asp-for="Model" class="form-control" value=@Model.Model />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Year" class="control-label">Year</label>
+                    <input asp-for="Year" class="form-control" value=@Model.Year />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</html>
